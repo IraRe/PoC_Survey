@@ -10,11 +10,8 @@ public class SurveyRestController {
 
 	@Autowired
 	private SurveyRepository surveyRepository;
-
-	@Autowired
-	public SurveyRestController(final SurveyRepository surveyRepository) {
-		super();
-		this.surveyRepository = surveyRepository;
+	
+	public void getSurvey() {
 		
 	}
 }
