@@ -11,6 +11,10 @@ public class FilledSurvey {
 	private Survey survey;
 	private Collection<UserAnswer> userAnswers;
 	
+	public FilledSurvey() {
+		super();
+	}
+	
 	public FilledSurvey(Survey survey, Collection<UserAnswer> userAnswers) {
 		super();
 		this.survey = survey;

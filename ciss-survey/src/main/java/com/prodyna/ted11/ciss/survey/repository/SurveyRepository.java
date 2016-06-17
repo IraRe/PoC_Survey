@@ -11,4 +11,6 @@ public interface SurveyRepository extends JpaRepository<Survey, Long> {
 	public Survey findById(Long id);
 
 	public List<Survey> findAllByOrderByIdDesc();
+	
+	public Survey findTopByOrderByIdDesc();
 }
