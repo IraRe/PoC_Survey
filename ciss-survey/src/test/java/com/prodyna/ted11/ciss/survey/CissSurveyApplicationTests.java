@@ -2,6 +2,7 @@ package com.prodyna.ted11.ciss.survey;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,6 +15,8 @@ import com.prodyna.ted11.ciss.survey.entity.AnswerOption;
 import com.prodyna.ted11.ciss.survey.entity.Question;
 import com.prodyna.ted11.ciss.survey.entity.QuestionType;
 import com.prodyna.ted11.ciss.survey.entity.Survey;
+import com.prodyna.ted11.ciss.survey.entity.UserAnswer;
+import com.prodyna.ted11.ciss.survey.repository.AnswerRepository;
 import com.prodyna.ted11.ciss.survey.repository.SurveyRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,6 +25,9 @@ public class CissSurveyApplicationTests {
 	
 	@Autowired
 	SurveyRepository surveyRepository;
+	
+	@Autowired
+	AnswerRepository answerRepository;
 	
 	@Test
 	public void contextLoads() {
@@ -51,6 +57,25 @@ public class CissSurveyApplicationTests {
 		surveyInput.setQuestions(questions);
 		Survey survey = surveyRepository.save(surveyInput);
 		Assert.assertNotNull(survey.getId());
+		
+		UserAnswer userAnswer1 = new UserAnswer();
+		userAnswer1.setQuestionAnswered(freetextQuestion);
+		userAnswer1.setSurveyName("MySurvey");
+		userAnswer1.setUuid(new UUID(10, 4));
+		userAnswer1.setAnswerText("Ukraine");
+		
+		UserAnswer userAnswer1Saved = answerRepository.save(userAnswer1);
+		Assert.assertNotNull(userAnswer1Saved.getId());
+		
+		UserAnswer userAnswer2 = new UserAnswer();
+		userAnswer2.setQuestionAnswered(multiplechoiceQuestion);
+		userAnswer2.setSurveyName("MySurvey");
+		userAnswer2.setUuid(new UUID(10, 4));
+		userAnswer2.setAnswerText(answer2.getAnswerText());
+		
+		UserAnswer userAnswer2Saved = answerRepository.save(userAnswer2);
+		Assert.assertNotNull(userAnswer2Saved.getId());
+		
 	}
 
 }
