@@ -36,7 +36,15 @@ public class SurveyRestController {
 	@RequestMapping(method=RequestMethod.GET, value="/survey/{id}")
 	public HttpEntity<Survey> getSurveyById(@PathVariable Long id) {
 		Survey survey = surveyRepository.findById(id);
+		// was passiert wenn kein survey gefunden wird?
 		return new ResponseEntity<Survey>(survey, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/survey/current")
+	public HttpEntity<Survey> getCurrentSurvey() {
+		List<Survey> allSurveys = surveyRepository.findAllByOrderByIdDesc();
+		// gibt es so etwas wie "findOneByMaxId()"?
+		return new ResponseEntity<Survey>(allSurveys.get(0), HttpStatus.OK);
 	}
 	
 }

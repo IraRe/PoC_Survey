@@ -61,7 +61,7 @@ public class CissSurveyApplicationTests {
 		UserAnswer userAnswer1 = new UserAnswer();
 		userAnswer1.setQuestionAnswered(freetextQuestion);
 		userAnswer1.setSurveyName("MySurvey");
-		userAnswer1.setUuid(new UUID(10, 4));
+		userAnswer1.setUserId("1");
 		userAnswer1.setAnswerText("Ukraine");
 		
 		UserAnswer userAnswer1Saved = answerRepository.save(userAnswer1);
@@ -70,7 +70,7 @@ public class CissSurveyApplicationTests {
 		UserAnswer userAnswer2 = new UserAnswer();
 		userAnswer2.setQuestionAnswered(multiplechoiceQuestion);
 		userAnswer2.setSurveyName("MySurvey");
-		userAnswer2.setUuid(new UUID(10, 4));
+		userAnswer2.setUserId("1");
 		userAnswer2.setAnswerText(answer2.getAnswerText());
 		
 		UserAnswer userAnswer2Saved = answerRepository.save(userAnswer2);

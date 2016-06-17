@@ -3,8 +3,6 @@
  */
 package com.prodyna.ted11.ciss.survey.entity;
 
-import java.util.UUID;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +23,7 @@ public class UserAnswer {
 	@ManyToOne
 	private Question questionAnswered;
 	
-	private UUID uuid;
+	private String userId;
 	
 	private String surveyName;
 	
@@ -39,12 +37,12 @@ public class UserAnswer {
 		this.questionAnswered = questionAnswered;
 	}
 
-	public UUID getUuid() {
-		return uuid;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getSurveyName() {
@@ -74,7 +72,7 @@ public class UserAnswer {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((questionAnswered == null) ? 0 : questionAnswered.hashCode());
 		result = prime * result + ((surveyName == null) ? 0 : surveyName.hashCode());
-		result = prime * result + ((uuid == null) ? 0 : uuid.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -102,10 +100,10 @@ public class UserAnswer {
 				return false;
 		} else if (!surveyName.equals(other.surveyName))
 			return false;
-		if (uuid == null) {
-			if (other.uuid != null)
+		if (userId == null) {
+			if (other.userId != null)
 				return false;
-		} else if (!uuid.equals(other.uuid))
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}
@@ -124,9 +122,9 @@ public class UserAnswer {
 			builder.append(questionAnswered);
 			builder.append(", ");
 		}
-		if (uuid != null) {
+		if (userId != null) {
 			builder.append("uuid=");
-			builder.append(uuid);
+			builder.append(userId);
 			builder.append(", ");
 		}
 		if (surveyName != null) {
