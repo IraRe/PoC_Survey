@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +31,12 @@ public class SurveyRestController {
 	public HttpEntity<Survey> saveSurvey(@RequestBody Survey survey) {
 		Survey savedSurvey = surveyRepository.save(survey);
 		return new ResponseEntity<Survey>(savedSurvey, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/survey/{id}")
+	public HttpEntity<Survey> getSurveyById(@PathVariable Long id) {
+		Survey survey = surveyRepository.findById(id);
+		return new ResponseEntity<Survey>(survey, HttpStatus.OK);
 	}
 	
 }
