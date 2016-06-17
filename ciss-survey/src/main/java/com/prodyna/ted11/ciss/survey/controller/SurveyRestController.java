@@ -3,6 +3,10 @@ package com.prodyna.ted11.ciss.survey.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,5 +26,10 @@ public class SurveyRestController {
 		return allSurveys;
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/survey")
+	public HttpEntity<Survey> saveSurvey(@RequestBody Survey survey) {
+		Survey savedSurvey = surveyRepository.save(survey);
+		return new ResponseEntity<Survey>(savedSurvey, HttpStatus.CREATED);
+	}
 	
 }
