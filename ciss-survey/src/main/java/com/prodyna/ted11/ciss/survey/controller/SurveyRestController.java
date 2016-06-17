@@ -22,9 +22,9 @@ public class SurveyRestController {
 	private SurveyRepository surveyRepository;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/survey")
-	public List<Survey> getAllSurveys() {
+	public HttpEntity<List<Survey>> getAllSurveys() {
 		List<Survey> allSurveys = surveyRepository.findAll();
-		return allSurveys;
+		return new ResponseEntity<List<Survey>>(allSurveys, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/survey")

@@ -31,7 +31,7 @@ public class FilledSurveyRestController {
 	private AnswerRepository answerRepository;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/filled")
-	public List<FilledSurvey> getAllFilledSurveys() {
+	public HttpEntity<List<FilledSurvey>> getAllFilledSurveys() {
 		List<FilledSurvey> allFilledSurveys = new ArrayList<>();
 		List<Survey> allSurveys = surveyRepository.findAll();
 		for (Survey survey : allSurveys) {
@@ -39,7 +39,7 @@ public class FilledSurveyRestController {
 			FilledSurvey filledSurvey = new FilledSurvey(survey, userAnswers);
 			allFilledSurveys.add(filledSurvey);
 		}
-		return allFilledSurveys;
+		return new ResponseEntity<List<FilledSurvey>>(allFilledSurveys, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/filled")
