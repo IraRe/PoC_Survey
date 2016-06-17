@@ -11,9 +11,8 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.prodyna.ted11.ciss.survey.entity.AnswerOption;
-import com.prodyna.ted11.ciss.survey.entity.FreetextQuestion;
-import com.prodyna.ted11.ciss.survey.entity.MultiplechoiceQuestion;
 import com.prodyna.ted11.ciss.survey.entity.Question;
+import com.prodyna.ted11.ciss.survey.entity.QuestionType;
 import com.prodyna.ted11.ciss.survey.entity.Survey;
 import com.prodyna.ted11.ciss.survey.repository.SurveyRepository;
 
@@ -23,17 +22,19 @@ public class CissSurveyApplicationTests {
 	
 	@Autowired
 	SurveyRepository surveyRepository;
-
+	
 	@Test
 	public void contextLoads() {
+		
 		Survey surveyInput = new Survey();
 		surveyInput.setName("MySurvey");
 		ArrayList<Question> questions = new ArrayList<>();
-		FreetextQuestion freetextQuestion = new FreetextQuestion();
+		Question freetextQuestion = new Question();
+		freetextQuestion.setQuestionType(QuestionType.FREETEXT);
 		freetextQuestion.setQuestionText("In welchem Land wurde Baseball erfunden?");
-		freetextQuestion.setAnswer("Ukraine");
 		questions.add(freetextQuestion);
-		MultiplechoiceQuestion multiplechoiceQuestion = new MultiplechoiceQuestion();
+		Question multiplechoiceQuestion = new Question();
+		multiplechoiceQuestion.setQuestionType(QuestionType.MULTIPLECHOICE);
 		multiplechoiceQuestion.setQuestionText("Wann wurde die erste Verfassung der Welt verfasst?");
 		Collection<AnswerOption> answerOptions = new ArrayList<>();
 		AnswerOption answer1 = new AnswerOption();
@@ -45,7 +46,6 @@ public class CissSurveyApplicationTests {
 		AnswerOption answer3 = new AnswerOption();
 		answer3.setAnswerText("2016");
 		answerOptions.add(answer3);
-		multiplechoiceQuestion.setAnswer(answer1);
 		multiplechoiceQuestion.setAnswerOptions(answerOptions);
 		questions.add(multiplechoiceQuestion);
 		surveyInput.setQuestions(questions);
